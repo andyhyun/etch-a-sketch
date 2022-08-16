@@ -5,7 +5,7 @@ function createGrid(n) {
     for (let j = 0; j < n; j++) {
       const cell = document.createElement("div");
       cell.addEventListener("mouseover", () => {
-        cell.style.backgroundColor = "black";
+        cell.style.backgroundColor = getRandomColor();
       });
       container.appendChild(cell);
     }
@@ -32,6 +32,14 @@ function removeGrid() {
   while (container.hasChildNodes()) {
     container.firstChild.remove();
   }
+}
+
+function getRandomColor() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+
+  return `rgb(${r}, ${g}, ${b})`;
 }
 
 const container = document.querySelector(".container");
