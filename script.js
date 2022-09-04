@@ -7,12 +7,12 @@ function createGrid(n) {
       cell.addEventListener("mouseover", () => {
         cell.style.backgroundColor = getRandomColor();
       });
-      container.appendChild(cell);
+      grid.appendChild(cell);
     }
   }
 
-  container.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
-  container.style.gridTemplateRows = `repeat(${n}, 1fr)`;
+  grid.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${n}, 1fr)`;
 }
 
 function changeGridSize() {
@@ -29,8 +29,8 @@ function changeGridSize() {
 }
 
 function removeGrid() {
-  while (container.hasChildNodes()) {
-    container.firstChild.remove();
+  while (grid.hasChildNodes()) {
+    grid.firstChild.remove();
   }
 }
 
@@ -42,7 +42,7 @@ function getRandomColor() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-const container = document.querySelector(".container");
+const grid = document.querySelector(".grid");
 
 createGrid(16);
 
