@@ -1,18 +1,8 @@
 "use strict";
 
-function createGrid(n) {
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < n; j++) {
-      const cell = document.createElement("div");
-      cell.addEventListener("mouseover", () => {
-        cell.style.backgroundColor = getRandomColor();
-      });
-      grid.appendChild(cell);
-    }
-  }
-
-  grid.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
-  grid.style.gridTemplateRows = `repeat(${n}, 1fr)`;
+function eraseGrid() {
+  const squares = document.querySelectorAll(".grid div");
+  squares.forEach((square) => square.style.backgroundColor = "#dadada");
 }
 
 function changeGridSize() {
@@ -24,14 +14,31 @@ function changeGridSize() {
     if (n === null) return;
   }
 
+  gridSize = parseInt(n);
+
   removeGrid();
-  createGrid(parseInt(n));
+  createGrid();
 }
 
 function removeGrid() {
   while (grid.hasChildNodes()) {
     grid.firstChild.remove();
   }
+}
+
+function createGrid() {
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      const cell = document.createElement("div");
+      cell.addEventListener("mouseover", () => {
+        cell.style.backgroundColor = getRandomColor();
+      });
+      grid.appendChild(cell);
+    }
+  }
+
+  grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 }
 
 function getRandomColor() {
@@ -44,7 +51,11 @@ function getRandomColor() {
 
 const grid = document.querySelector(".grid");
 
-createGrid(16);
+let gridSize = 16;
+createGrid(gridSize);
 
-const button = document.querySelector("button");
-button.addEventListener("click", changeGridSize);
+const erase = document.querySelector(".erase");
+erase.addEventListener("click", eraseGrid);
+
+const change = document.querySelector(".change");
+change.addEventListener("click", changeGridSize);

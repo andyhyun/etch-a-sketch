@@ -1,6 +1,6 @@
 .container {
   background-color: #f08080;
-  color: #ffffff;
+  color: #ead97b;
   width: 600px;
   border-radius: 15px;
   margin: auto;
@@ -13,6 +13,11 @@
 
 h1 {
   margin: 0px;
+}
+
+.buttons {
+  display: flex;
+  gap: 50px;
 }
 
 button {
